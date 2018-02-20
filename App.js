@@ -16,6 +16,7 @@ import { StackNavigator, Header } from 'react-navigation';
 import Spin from './src/Spin';
 import Timing from './src/Timing';
 import Spring from './src/Spring';
+import Parallel from './src/Parallel';
 
 class App extends Component {
 
@@ -26,6 +27,7 @@ class App extends Component {
 				<Button title='Go to Spin example' onPress={() => this.props.navigation.navigate('Spin')} />
 				<Button title='Go to Timing example' onPress={() => this.props.navigation.navigate('Timing')} />
 				<Button title='Go to Spring example' onPress={() => this.props.navigation.navigate('Spring')} />
+				<Button title='Go to Parallel example' onPress={() => this.props.navigation.navigate('Parallel')} />
 			</View>
 			
 		);
@@ -53,5 +55,8 @@ export default StackNavigator({
     },
 	Spring: {
         screen: Spring,
+    },
+	Parallel: {
+        screen: Parallel,
     }
 });
