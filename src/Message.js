@@ -7,7 +7,6 @@ import {
 	Animated,
 	Image,
     Easing,
-    TouchableHighlight
 } from 'react-native';
 
 export default class Message extends Component {
@@ -15,14 +14,48 @@ export default class Message extends Component {
     constructor () {
         super();
         this.animatedValue3 = new Animated.Value(0);
+
+        this.down = this.animatedValue3.interpolate({
+            inputRange: [0, 1],
+            outputRange: [-100, 0]
+        })
+
+
+        this.state = {
+            down: this.down
+        }
     }
 
     componentDidMount () {
-        this.animate()
+        // this.animate();
+        this.animateDown();
+        this.animateUp();
+    }
+
+    animateUp = () => {
+        setTimeout(() => {
+
+            console.log('vai começar animateUp');
+            let down = this.animatedValue3.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, -100]
+            })
+
+            this.setState({down: down})
+
+            this.animate();
+
+        }, 5000);
+    }
+
+    animateDown = () => {
+        console.log('vai começar animateDown');
+        this.animatedValue3.setValue(0);
+        this.animate();
     }
 
     animate = () => {
-        this.animatedValue3.setValue(0)
+        console.log('vai começar animate');
         const createAnimation = function (value, duration, easing, delay = 0) {
             return Animated.timing(
                 value,
@@ -36,17 +69,14 @@ export default class Message extends Component {
         }
         Animated.parallel([
             createAnimation(this.animatedValue3, 1000, Easing.ease)        
-        ]).start()
+        ]).start();
+
+        
     }
 
     render () {
-        const introButton = this.animatedValue3.interpolate({
-            inputRange: [0, 1],
-            outputRange: [-100, 0]
-        })
-
         return (
-            <Animated.View style={[styles.containerStyle, {top: introButton, position: 'absolute'}]}>
+            <Animated.View style={[styles.containerStyle, {top: this.state.down, position: 'absolute'}]}>
                 <Image
 					style={{
 					width: 40,
