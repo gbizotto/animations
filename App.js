@@ -8,12 +8,16 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	TouchableOpacity
+	Button
 } from 'react-native';
 
 import { StackNavigator, Header } from 'react-navigation';
 
 import Spin from './src/Spin';
+
+
+
+import Timing from './src/Timing';
 
 class App extends Component {
 
@@ -21,9 +25,8 @@ class App extends Component {
 
 		return (
 			<View style={styles.container}>
-				<TouchableOpacity onPress={() => this.props.navigation.navigate('Spin')}>
-					<Text>Go to Spin example</Text>
-				</TouchableOpacity>
+				<Button title='Go to Spin example' onPress={() => this.props.navigation.navigate('Spin')} />
+				<Button title='Go to Timing example' onPress={() => this.props.navigation.navigate('Timing')} />
 			</View>
 			
 		);
@@ -33,7 +36,8 @@ class App extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: 'center',
+		flexDirection: 'row',
+		justifyContent: 'space-around',
 		alignItems: 'center',
 	}
 });
@@ -45,5 +49,8 @@ export default StackNavigator({
 	  },
 	Spin: {
         screen: Spin,
+	},
+	Timing: {
+        screen: Timing,
     }
 });
