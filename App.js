@@ -8,49 +8,22 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	Animated,
-	Image,
-	Easing
+	TouchableOpacity
 } from 'react-native';
 
-export default class App extends Component {
+import { StackNavigator, Header } from 'react-navigation';
 
-	constructor () {
-		super();
-		this.spinValue = new Animated.Value(0);
-	}
+import Spin from './src/Spin';
 
-	componentDidMount () {
-		this.spin()
-	}
-
-	spin = () => {
-		this.spinValue.setValue(0);
-
-		Animated.timing(
-			this.spinValue,
-		  	{
-				toValue: 1,
-				duration: 3000,
-				easing: Easing.linear
-			}
-		).start(() => this.spin());
-	}
+class App extends Component {
 
 	render() {
-		const spin = this.spinValue.interpolate({
-			inputRange: [0, 1],
-			outputRange: ['0deg', '360deg']
-		})
 
 		return (
 			<View style={styles.container}>
-				<Animated.Image
-					style={{
-					width: 50,
-					height: 50,
-					transform: [{rotate: spin}] }}
-					source={require('./assets/ticketOn.png')} />
+				<TouchableOpacity onPress={() => this.props.navigation.navigate('Spin')}>
+					<Text>Go to Spin example</Text>
+				</TouchableOpacity>
 			</View>
 			
 		);
@@ -62,6 +35,15 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: 'rgba(0, 0, 0, 0.3)',
 	}
+});
+
+
+export default StackNavigator({
+	Home: {
+		screen: App,
+	  },
+	Spin: {
+        screen: Spin,
+    }
 });
