@@ -14,10 +14,8 @@ import {
 import { StackNavigator, Header } from 'react-navigation';
 
 import Spin from './src/Spin';
-
-
-
 import Timing from './src/Timing';
+import Spring from './src/Spring';
 
 class App extends Component {
 
@@ -27,6 +25,7 @@ class App extends Component {
 			<View style={styles.container}>
 				<Button title='Go to Spin example' onPress={() => this.props.navigation.navigate('Spin')} />
 				<Button title='Go to Timing example' onPress={() => this.props.navigation.navigate('Timing')} />
+				<Button title='Go to Spring example' onPress={() => this.props.navigation.navigate('Spring')} />
 			</View>
 			
 		);
@@ -36,7 +35,6 @@ class App extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		flexDirection: 'row',
 		justifyContent: 'space-around',
 		alignItems: 'center',
 	}
@@ -52,5 +50,8 @@ export default StackNavigator({
 	},
 	Timing: {
         screen: Timing,
+    },
+	Spring: {
+        screen: Spring,
     }
 });
