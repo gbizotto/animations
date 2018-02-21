@@ -18,6 +18,7 @@ import Timing from './src/Timing';
 import Spring from './src/Spring';
 import Parallel from './src/Parallel';
 import Message from './src/Message';
+import MessageWithTiming from './src/MessageWithTiming';
 
 class App extends Component {
 
@@ -30,6 +31,7 @@ class App extends Component {
 				<Button title='Go to Spring example' onPress={() => this.props.navigation.navigate('Spring')} />
 				<Button title='Go to Parallel example' onPress={() => this.props.navigation.navigate('Parallel')} />
 				<Button title='Go to Message example' onPress={() => this.props.navigation.navigate('Message')} />
+				<Button title='Go to MessageWithTiming example' onPress={() => this.props.navigation.navigate('MessageWithTiming')} />
 			</View>
 			
 		);
@@ -63,5 +65,8 @@ export default StackNavigator({
     },
 	Message: {
         screen: Message,
+    },
+	MessageWithTiming: {
+        screen: MessageWithTiming,
     }
 });
